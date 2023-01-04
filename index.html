@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="styles.css">
+    <!--JS-->
+    <script src="index.js" defer></script>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+    <header>
+        <h1>Library</h1>
+    </header>
+    <div class="form-container">
+        <h1>Add new book</h1>
+        <form class="new-book-form" onsubmit="return false">
+            <input id="name" name="name" type="text" placeholder="Name">
+            <input id="author" name="author" type="text" placeholder="Author">
+            <input id="pages" name="pages" type="number" placeholder="123">
+            <label for="haveRead">Have you read this book?</label>
+            <input id="haveRead" name="haveRead" type="checkbox">
+            <button id="submit">Submit</button>
+        </form>
+    </div>
+    <main>
+        <div class="button-container">
+            <button class="new-button">+ Add Book</button>
+        </div>
+        <div class="books-container">
+            <div class="book-card">
+                <p class="name">1984</p>
+                <p class="author">George Orwell</p>
+                <p class="pages">200 pages</p>
+                <button class="read-button">Not Read</button>
+                <button class="remove-button">Remove</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
