@@ -33,40 +33,41 @@ const pageInput = document.querySelector('#pages');
 const haveReadInput = document.querySelector('#haveRead');
 const bookContainer = document.querySelector('.books-container');
 
-
-
 submitButton.addEventListener('click', () => {
+    const bookCard = document.createElement('div');
+    const bookName = document.createElement('p');
+    const author = document.createElement('p');
+    const pages = document.createElement('p');
+    const readButton = document.createElement('button');
+    const removeButton = document.createElement('button');
+
+    bookCard.classList.add('book-card');
+    readButton.classList.add('read-button');
+    removeButton.classList.add('remove-button');
+
+    bookName.textContent = nameInput.value;
+    author.textContent = authorInput.value;
+    pages.textContent = pageInput.value;
+    readButton.setAttribute('id', 'readButton');
+    removeButton.textContent = 'Remove';
+
+    if (haveReadInput.checked) {
+        readButton.textContent = 'Read';
+        readButton.classList.add('light-green');
+    } else {
+        readButton.textContent = 'Not Read';
+        readButton.classList.add('light-red');
+    }
+
+    bookContainer.appendChild(bookCard);
+    bookCard.appendChild(bookName);
+    bookCard.appendChild(author);
+    bookCard.appendChild(pages);
+    bookCard.appendChild(readButton);
+    bookCard.appendChild(removeButton);
+
     let newBook = new book(nameInput.value, authorInput.value, pageInput.value, haveReadInput.checked);
     addBookToLibrary(newBook);
-
-    for (i = 0; i < library.length; i++) {
-        const bookCard = document.createElement('div');
-        bookCard.classList.add('book-card');
-        const bookName = document.createElement('p');
-        const author = document.createElement('p');
-        const pages = document.createElement('p');
-        const readButton = document.createElement('button');
-        readButton.classList.add('read-button');
-        const removeButton = document.createElement('button');
-        removeButton.classList.add('remove-button');
-        removeButton.textContent = 'Remove';
-
-        bookName.textContent = library[i].name;
-        author.textContent = library[i].author;
-        pages.textContent = library[i].pages;
-        if (library[i].haveRead) {
-            readButton.textContent = 'Read';
-        } else {
-            readButton.textContent = 'Not Read';
-        }
-
-        bookContainer.appendChild(bookCard);
-        bookCard.appendChild(bookName)
-        bookCard.appendChild(author)
-        bookCard.appendChild(pages)
-        bookCard.appendChild(readButton)
-        bookCard.appendChild(removeButton)
-    }
 
     nameInput.value = '';
     authorInput.value = '';
@@ -75,6 +76,29 @@ submitButton.addEventListener('click', () => {
     formContainer.style.display = 'none';
     overlay.style.display = 'none';
 })
+
+// Enables the read button and remove button, remove button also deletes library item
+
+bookContainer.addEventListener('click', (event) => {
+    if (event.target.id === 'readButton') {
+        if (event.target.textContent === 'Read') {
+            event.target.textContent = 'Not Read';
+            event.target.classList.add('light-red');
+            event.target.classList.remove('light-green');
+        } else {
+            event.target.textContent = 'Read';
+            event.target.classList.add('light-green');
+            event.target.classList.remove('light-red');
+        }
+    } else if (event.target.className === 'remove-button') {
+        var bookCard = event.target.parentElement;
+        var parent = bookCard.parentNode;
+        var indexNumber = Array.prototype.indexOf.call(parent.children, bookCard)
+
+        library.splice(indexNumber, 1);
+        event.target.parentElement.remove();
+    }
+})  
 
 
 
