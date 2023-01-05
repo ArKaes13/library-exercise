@@ -115,13 +115,21 @@ input[type='checkbox'] {
 
 .book-card p {
     margin: 1.5rem 0 0 0;
+    text-align: center;
 }
 
 .read-button {
-    background-color: lightcoral;
     margin: 1rem 0 0 0;
     width: 15rem;
     font-size: 1.6rem;
+}
+
+.light-green {
+    background-color: lightgreen;
+}
+
+.light-red {
+    background-color: lightcoral;
 }
 
 .remove-button {
